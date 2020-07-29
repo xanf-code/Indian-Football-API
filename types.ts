@@ -1,4 +1,5 @@
 export interface TeamList {
+  id: string;
   Name: string;
   age: number;
   height: number;

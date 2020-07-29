@@ -2,6 +2,7 @@ import { TeamList } from '../types.ts'
 
 let teamlist : TeamList[] = [
     {
+    "id" : '1',
     "Name": "Sunil Chhetri",
     "age": 33,
     "height": 170,
@@ -18,6 +19,7 @@ let teamlist : TeamList[] = [
     "body_type": "Normal"
   },
   {
+    "id" : '2',
     "Name": "Sandesh Jhingan",
     "age": 24,
     "height": 188,
@@ -35,3 +37,29 @@ let teamlist : TeamList[] = [
   },
 ]
 
+// GET LIST
+// /api/v1/players
+const getList = ({response} : {response: any}) => {
+    response.body = {
+        success : true,
+        data : teamlist
+    }
+}
+
+// GET SINGLE PLAYER
+// GET /api/v1/player/:id
+const getPlayer = ({ response }: { response: any }) => {};
+
+// ADD PLAYER
+// POST /api/v1/player
+const addPlayer = ({ response }: { response: any }) => {};
+
+// PUT - UPDATE PLAYER
+// PUT /api/v1/player/:id
+const updatePlayer = ({ response }: { response: any }) => {};
+
+// DELETE PLAYER
+// DELETE /api/v1/player/:id
+const deletePlayer = ({ response }: { response: any }) => {};
+
+export { getList,getPlayer,addPlayer,updatePlayer,deletePlayer}
