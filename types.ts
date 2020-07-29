@@ -1,4 +1,4 @@
-export interface playerbio {
+export interface Playerbio {
   id: string;
   Name: string;
   age: number;
