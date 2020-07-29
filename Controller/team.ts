@@ -4,7 +4,7 @@ import { v4 } from 'https://deno.land/std/uuid/mod.ts'
 let players : Playerbio[] = [
     {
     id : "1",
-    Name: "Sunil Chhetri",
+    name : "Sunil Chhetri",
     age: 33,
     height: 170,
     weight : 70,
@@ -13,7 +13,7 @@ let players : Playerbio[] = [
     potential : 67,
     player_positions : "ST, CF",
     preferred_foot : "Right",
-    international_reputation: 1,
+    international_reputation : 1,
     weak_foot : 4,
     skill_moves : 3,
     work_rate : "High/Medium",
@@ -21,7 +21,7 @@ let players : Playerbio[] = [
   },
   {
     id : "2",
-    Name: "Sandesh Jhingan",
+    name : "Sandesh Jhingan",
     age : 24,
     height : 188,
     weight : 74,
@@ -35,11 +35,12 @@ let players : Playerbio[] = [
     skill_moves : 2,
     work_rate : "Medium/Medium",
     body_type : "Normal"
-  }
-]
+  },
+];
 
 // GET LIST
 // /api/v1/players
+
 const getList = ({response} : {response: any}) => {
     response.body = {
         success : true,
@@ -49,6 +50,7 @@ const getList = ({response} : {response: any}) => {
 
 // GET SINGLE PLAYER
 // GET /api/v1/player/:id
+
 const getPlayer = ({ response, params}: { params: {id: string} ,response: any }) => {
         const player: Playerbio | undefined = players.find(p=> p.id === params.id)
         if(player){
@@ -68,6 +70,7 @@ const getPlayer = ({ response, params}: { params: {id: string} ,response: any })
 
 // ADD PLAYER
 // POST /api/v1/player
+
 const addPlayer = async ({ request, response }: { request: any, response: any }) => {
     const body = await request.body()
 
@@ -77,7 +80,7 @@ const addPlayer = async ({ request, response }: { request: any, response: any })
             success : false,
             msg : "No Data" 
         }
-    } else{
+    } else {
         const player : Playerbio = body.value
         player.id = v4.generate()
         players.push(player)
@@ -91,10 +94,12 @@ const addPlayer = async ({ request, response }: { request: any, response: any })
 
 // PUT - UPDATE PLAYER
 // PUT /api/v1/player/:id
+
 const updatePlayer = ({ response }: { response: any }) => {};
 
 // DELETE PLAYER
 // DELETE /api/v1/player/:id
+
 const deletePlayer = ({ response }: { response: any }) => {};
 
 export { getList,getPlayer,addPlayer,updatePlayer,deletePlayer}

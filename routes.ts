@@ -4,7 +4,7 @@ const router = new Router();
 
 router.get("/api/v1/players", getList)
  .get("/api/v1/player/:id", getPlayer)
- .post("/api/v1/player", addPlayer)
+ .post("/api/v1/players", addPlayer)
  .put("/api/v1/player/:id", updatePlayer)
  .delete("/api/v1/player/:id", deletePlayer)
 

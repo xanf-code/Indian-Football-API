@@ -1,6 +1,6 @@
 export interface Playerbio {
   id: string;
-  Name: string;
+  name: string;
   age: number;
   height: number;
   weight: number;
