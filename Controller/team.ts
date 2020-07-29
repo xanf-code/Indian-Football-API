@@ -1,5 +1,4 @@
 import { Playerbio } from '../types.ts'
-import { v4 } from 'https://deno.land/std/uuid/mod.ts'
 
 let players : Playerbio[] = [
     {
@@ -71,7 +70,8 @@ const getPlayer = ({ response, params}: { params: {id: string} ,response: any })
 // ADD PLAYER
 // POST /api/v1/player
 
-const addPlayer = async ({ request, response }: { request: any, response: any }) => {
+const addPlayer = async ({ request, response }: { request: any, response: any }) =>
+{
     const body = await request.body()
 
     if (!request.hasBody){
@@ -81,8 +81,7 @@ const addPlayer = async ({ request, response }: { request: any, response: any })
             msg : "No Data" 
         }
     } else {
-        const player : Playerbio = body.value
-        player.id = v4.generate()
+        const player : Playerbio = await body.value
         players.push(player)
         response.status = 201
         response.body = {
