@@ -1,6 +1,6 @@
-import { TeamList } from '../types.ts'
+import { playerbio } from '../types.ts'
 
-let teamlist : TeamList[] = [
+let players : playerbio[] = [
     {
     "id" : '1',
     "Name": "Sunil Chhetri",
@@ -42,13 +42,28 @@ let teamlist : TeamList[] = [
 const getList = ({response} : {response: any}) => {
     response.body = {
         success : true,
-        data : teamlist
+        data : players
     }
 }
 
 // GET SINGLE PLAYER
 // GET /api/v1/player/:id
-const getPlayer = ({ response }: { response: any }) => {};
+const getPlayer = ({ response, params}: { params: {id: string} ,response: any }) => {
+        const player: playerbio | undefined = players.find(p=> p.id === params.id)
+        if(player){
+            response.status = 200
+            response.body = {
+                success : true,
+                data : player
+            }
+        }else{
+            response.status = 400
+            response.body = {
+                success : false,
+                msg : "Player not found"
+            }
+        }
+};
 
 // ADD PLAYER
 // POST /api/v1/player

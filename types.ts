@@ -1,4 +1,4 @@
-export interface TeamList {
+export interface playerbio {
   id: string;
   Name: string;
   age: number;
