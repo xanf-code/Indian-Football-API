@@ -94,11 +94,40 @@ const addPlayer = async ({ request, response }: { request: any, response: any })
 // PUT - UPDATE PLAYER
 // PUT /api/v1/player/:id
 
-const updatePlayer = ({ response }: { response: any }) => {};
+const updatePlayer = async ({ params, request, response }: { params: { id: string }, request: any, response: any }) => {
+
+    const player: Playerbio | undefined = players.find((p) => p.id === params.id);
+    if (player) {
+        const body = await request.body()
+
+        const updatedData: {name?: string} = await body.value;
+        players = players.map(p => p.id === params.id ? {
+            ...p, ...updatedData
+        }:p)
+        response.status = 200;
+        response.body = {
+        success: true,
+        data: players,
+  };
+} else {
+    response.status = 400;
+    response.body = {
+    success: false,
+    msg: "Player not found",
+}
+}
+};
 
 // DELETE PLAYER
 // DELETE /api/v1/player/:id
 
-const deletePlayer = ({ response }: { response: any }) => {};
+const deletePlayer = ({ params , response }: { params: {id: string}, response: any }) => {
+    players = players.filter(p=> p.id !== params.id)
+    response.status = 201
+    response.body = {
+        success: true,
+        msg : 'Player Successfully removed from the Database'
+    }
+};
 
 export { getList,getPlayer,addPlayer,updatePlayer,deletePlayer}
