@@ -4,13 +4,13 @@
 
 ### OutCome: 
 
-![JSONDATA](.resources/jsonIFD.png)
+![JSONDATA](./resources/jsonIFD.png)
 
 
 CheckList:
 
 - [x] Static Colleges API
-- [ ] PostgreSQL DB Backend
+- [x] PostgreSQL DB Backend
 
 ## Run
 
