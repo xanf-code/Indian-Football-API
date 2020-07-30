@@ -23,3 +23,4 @@ POST     /api/v1/player       -[x]Static  -[x]Database
 PUT      /api/v1/player/:id   -[-]Static  -[x]Database
 DELETE   /api/v1/player/:id   -[x]Static  -[x]Database
 ```
+![JSONDATA](./jsonIFD.png)
