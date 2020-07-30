@@ -190,6 +190,7 @@ if (!request.hasBody) {
 // DELETE /api/v1/player/:id
 
 const deletePlayer = async ({ params , response }: { params: {id: string}, response: any }) => {
+    await getPlayer({params: {"id": params.id}, response})
    if(response.status === 404) {
         response.body = {
             success: false,
@@ -205,7 +206,7 @@ const deletePlayer = async ({ params , response }: { params: {id: string}, respo
 
             response.body = {
                 success: true,
-                msg: `Product with id ${params.id} has been deleted`
+                msg: `Player with id ${params.id} has been deleted`
             }
             response.status = 204
         } catch (err) {
