@@ -1,5 +1,4 @@
 import { Client } from "https://deno.land/x/postgres/mod.ts";
-import { Playerbio } from '../types.ts'
 import { dbCreds } from '../Config/config.ts'
 
 const client = new Client(dbCreds)
