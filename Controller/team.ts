@@ -1,4 +1,8 @@
+import { Client } from "https://deno.land/x/postgres/mod.ts";
 import { Playerbio } from '../types.ts'
+import { dbCreds } from '../Config/config.ts'
+
+const client = new Client(dbCreds)
 
 let players : Playerbio[] = [
     {
@@ -73,6 +77,7 @@ const getPlayer = ({ response, params}: { params: {id: string} ,response: any })
 const addPlayer = async ({ request, response }: { request: any, response: any }) =>
 {
     const body = await request.body()
+    const player = await body.value
 
     if (!request.hasBody){
         response.status = 400,
@@ -81,13 +86,39 @@ const addPlayer = async ({ request, response }: { request: any, response: any })
             msg : "No Data" 
         }
     } else {
-        const player : Playerbio = await body.value
-        players.push(player)
-        response.status = 201
-        response.body = {
-            success : true,
-            data : player
-        }
+       try {
+           await client.connect()
+
+           await client.query("INSERT INTO players(name,age,height,weight,nationality,overall,potential,player_positions,preferred_foot,international_reputation,weak_foot,skill_moves,work_rate,body_type)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)",
+           player.name,
+           player.age,
+           player.height,
+           player.weight,
+           player.nationality,
+           player.overall,
+           player.potential,
+           player.player_positions,
+           player.preferred_foot,
+           player.international_reputation,
+           player.weak_foot,
+           player.skill_moves,
+           player.work_rate,
+           player.body_type)
+
+           response.status = 201,
+           response.body = {
+               success : true,
+               data : player
+           }
+       } catch (err) {
+           response.status = 500,
+           response.body = {
+               success : false,
+               msg : err.toString()
+           }
+       } finally{
+           await client.end()
+       }
     }
 };
 
