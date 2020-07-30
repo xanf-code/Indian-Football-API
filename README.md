@@ -2,9 +2,9 @@
 
 ### Nation Team 2019-20 Squad API 
 
-OutCome: 
+### OutCome: 
 
-![JSONDATA](./jsonIFD.png)
+![JSONDATA](.resources/jsonIFD.png)
 
 
 CheckList:
