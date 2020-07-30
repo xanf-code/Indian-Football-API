@@ -44,10 +44,36 @@ let players : Playerbio[] = [
 // GET LIST
 // /api/v1/players
 
-const getList = ({response} : {response: any}) => {
-    response.body = {
-        success : true,
-        data : players
+const getList = async ({response} : {response: any}) => {
+    try {
+        await client.connect()
+
+        const results = await client.query("SELECT * FROM players")
+
+        const players = new Array()
+
+        results.rows.map(p=> {
+            let obj : any = new Object()
+
+            results.rowDescription.columns.map((el,i) => {
+                obj[el.name] = p[i]
+            })
+
+            players.push(obj)
+        })
+        response.status = 201,
+        response.body = {
+            success : true,
+            data: players
+        }
+    } catch (err) {
+        response.status = 500,
+        response.body = {
+        success: false,
+        data: err.toString(),
+  };
+    } finally {
+        await client.end()
     }
 }
 

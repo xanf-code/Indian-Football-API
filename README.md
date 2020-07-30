@@ -17,7 +17,7 @@ deno start
 ## Routes
 
 ```
-GET      /api/v1/players      -[x]Static  -[ ]Database
+GET      /api/v1/players      -[x]Static  -[x]Database
 GET      /api/v1/player/:id   -[x]Static  -[ ]Database
 POST     /api/v1/player       -[x]Static  -[x]Database
 PUT      /api/v1/player/:id   -[ ]Static  -[ ]Database
