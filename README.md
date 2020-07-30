@@ -18,8 +18,8 @@ deno start
 
 ```
 GET      /api/v1/players      -[x]Static  -[x]Database
-GET      /api/v1/player/:id   -[x]Static  -[ ]Database
+GET      /api/v1/player/:id   -[x]Static  -[x]Database
 POST     /api/v1/player       -[x]Static  -[x]Database
-PUT      /api/v1/player/:id   -[ ]Static  -[ ]Database
-DELETE   /api/v1/player/:id   -[x]Static  -[ ]Database
+PUT      /api/v1/player/:id   -[-]Static  -[x]Database
+DELETE   /api/v1/player/:id   -[x]Static  -[x]Database
 ```
